@@ -1,10 +1,10 @@
 -- Drop-in sender for any RemoteSpy / custom hook
--- Replace YOUR_PROJECT and YOUR_ANON_KEY
+-- Drop-in sender for any RemoteSpy / custom hook
 
 local HttpService = game:GetService("HttpService")
 
 local SUPABASE_URL = "https://tbpxzmnukhoqthdozbwj.supabase.co"
-local SUPABASE_ANON_KEY = "YOUR_ANON_KEY"
+local SUPABASE_ANON_KEY = "sb_publishable_RVfnZvDuGmyu22MmuPAn9A_JoaMh11a"
 
 local function sendToReceiver(path, method, direction, args, caller)
     local payload = {

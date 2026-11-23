@@ -4,15 +4,11 @@
 <div id="t">inline-js-did-not-run</div>
 <div id="s">lib-not-checked</div>
 <div id="a">app-not-checked</div>
+<div id="e">no-error</div>
 <script>
+window.onerror = function(m, src, line) { document.getElementById('e').textContent = 'ERROR: ' + m + ' @ ' + src + ':' + line; };
 document.getElementById('t').textContent = 'inline-js-works';
 </script>
-<script src="supabase.min.js?v=1"></script>
-<script>
-document.getElementById('s').textContent = 'window.supabase=' + (typeof window.supabase);
-</script>
-<script src="app.js?v=2"></script>
-<script>
-document.getElementById('a').textContent = 'app-js-ran boot=' + (document.getElementById('boot') ? document.getElementById('boot').textContent : 'no-boot-el');
-</script>
+<script src="supabase.min.js?v=1" onload="document.getElementById('s').textContent='lib LOADED window.supabase='+(typeof window.supabase)" onerror="document.getElementById('s').textContent='lib FAILED TO LOAD'"></script>
+<script src="app.js?v=3" onload="document.getElementById('a').textContent='app.js LOADED'" onerror="document.getElementById('a').textContent='app.js FAILED TO LOAD'"></script>
 </body></html>

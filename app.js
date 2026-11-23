@@ -23,9 +23,9 @@ if (!window.supabase) {
   throw new Error("supabase-js not loaded");
 }
 
-let supabase;
+let sb;
 try {
-  supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 } catch (e) {
   const msg = e && e.message ? e.message : String(e);
   boot("createClient failed: " + msg);
@@ -102,7 +102,7 @@ function pushEvent(row) {
 }
 
 async function loadRecent() {
-  const { data, error } = await supabase
+  const { data, error } = await sb
     .from("remote_events")
     .select("*")
     .order("id", { ascending: false })
@@ -121,7 +121,7 @@ async function loadRecent() {
 }
 
 function startRealtime() {
-  channel = supabase
+  channel = sb
     .channel("remote_events_feed")
     .on(
       "postgres_changes",

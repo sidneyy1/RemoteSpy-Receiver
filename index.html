@@ -23,6 +23,21 @@
     <div id="feed" class="feed"></div>
   </main>
 
-  <script src="app.js?v=3"></script>
+  <script>
+  // Show any script error on screen (no DevTools needed on mobile).
+  window.addEventListener('error', function (e) {
+    var b = document.getElementById('boot');
+    if (b) b.textContent = 'JS error: ' + (e.message || 'unknown') + ' @ ' + (e.filename || '') + ':' + (e.lineno || '');
+  });
+  </script>
+  <script src="app.js?v=3" onload="window.__appLoaded=true" onerror="document.getElementById('boot').textContent='app.js FAILED TO LOAD (network or blocked)'"></script>
+  <script>
+  setTimeout(function () {
+    var b = document.getElementById('boot');
+    if (b && b.textContent === 'starting…' && !window.__appLoaded) {
+      b.textContent = 'app.js did not load or did not run (blocked?)';
+    }
+  }, 5000);
+  </script>
 </body>
 </html>

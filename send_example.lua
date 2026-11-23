@@ -1,5 +1,4 @@
 -- Drop-in sender for any RemoteSpy / custom hook
--- Drop-in sender for any RemoteSpy / custom hook
 
 local HttpService = game:GetService("HttpService")
 

@@ -23,7 +23,15 @@ if (!window.supabase) {
   throw new Error("supabase-js not loaded");
 }
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+let supabase;
+try {
+  supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+} catch (e) {
+  const msg = e && e.message ? e.message : String(e);
+  boot("createClient failed: " + msg);
+  feed.innerHTML = `<div class="empty">createClient failed: ${escapeHtml(msg)}</div>`;
+  throw e;
+}
 boot("supabase-js loaded — loading events…");
 
 let paused = false;

@@ -121,3 +121,13 @@ button:hover { border-color: var(--accent); }
   color: var(--muted);
   padding: 60px 20px;
 }
+
+.boot {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  padding: 10px 16px 0;
+  max-width: 1100px;
+  margin: 0 auto;
+  word-break: break-word;
+}
